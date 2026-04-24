@@ -1,0 +1,122 @@
+﻿@model HomeViewModel
+@{
+    ViewData["Title"] = "Inici";
+}
+
+<section class="hero" aria-labelledby="hero-heading">
+    <h1 class="hero-title" id="hero-heading">Rick &amp; Morty Explorer</h1>
+    <p class="hero-subtitle">
+        Explora l'univers de Rick &amp; Morty: personatges, episodis i guarda els teus favorits.
+        Dades en temps real de l'API oficial.
+    </p>
+    <div>
+        <a asp-controller="RickAndMorty" asp-action="Characters"
+           class="btn-primary-custom"
+           aria-label="Veure tots els personatges de Rick and Morty">
+            <span aria-hidden="true">🚀</span>
+            Explorar Personatges
+        </a>
+        <a asp-controller="RickAndMorty" asp-action="Episodes"
+           class="btn-outline-custom ms-3"
+           aria-label="Veure tots els episodis de Rick and Morty">
+            <span aria-hidden="true">📺</span>
+            Veure Episodis
+        </a>
+    </div>
+
+    <div class="hero-stats" role="region" aria-label="Estadístiques de la base de dades">
+        <div class="stat-item">
+            <span class="stat-number" aria-label="@Model.TotalCharacters personatges en total">
+                @Model.TotalCharacters.ToString("N0")
+            </span>
+            <span class="stat-label">Personatges</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number" aria-label="@Model.TotalEpisodes episodis en total">
+                @Model.TotalEpisodes.ToString("N0")
+            </span>
+            <span class="stat-label">Episodis</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number" aria-label="@Model.TotalFavorites personatges guardats com a favorits">
+                @Model.TotalFavorites
+            </span>
+            <span class="stat-label">Favorits</span>
+        </div>
+    </div>
+</section>
+
+<section class="py-4" aria-labelledby="featured-heading">
+    <p class="section-title" aria-hidden="true">Univers</p>
+    <h2 id="featured-heading" class="mb-4">Personatges Destacats</h2>
+
+    <div class="character-grid" role="list">
+        @foreach (var character in Model.FeaturedCharacters)
+        {
+            <article class="character-card" role="listitem" aria-label="@character.Name">
+                <div class="character-card__img-wrapper">
+                    <img src="@character.Image"
+                         alt="@character.ImageAltText"
+                         class="character-card__img"
+                         width="300" height="300"
+                         loading="lazy" />
+                </div>
+                <div class="character-card__body">
+                    <h3 class="character-card__name">@character.Name</h3>
+                    <p class="character-card__meta">
+                        <span class="status-badge @character.StatusCssClass"
+                              aria-label="Estat: @character.Status">
+                            @character.Status
+                        </span>
+                        <span class="ms-2 text-muted-custom" aria-label="Espècie: @character.Species">
+                            @character.Species
+                        </span>
+                    </p>
+                </div>
+                <a asp-controller="RickAndMorty"
+                   asp-action="Character"
+                   asp-route-id="@character.Id"
+                   class="character-card__link"
+                   aria-label="Veure detall de @character.Name">
+                </a>
+            </article>
+        }
+    </div>
+
+    <div class="text-center mt-4">
+        <a asp-controller="RickAndMorty" asp-action="Characters"
+           class="btn-outline-custom"
+           aria-label="Veure tots els personatges">
+            Veure tots els personatges →
+        </a>
+    </div>
+</section>
+
+<section class="py-4" aria-labelledby="episodes-heading">
+    <p class="section-title" aria-hidden="true">Episodis</p>
+    <h2 id="episodes-heading" class="mb-4">Últims Episodis</h2>
+
+    <div class="row g-3" role="list">
+        @foreach (var episode in Model.LatestEpisodes)
+        {
+            <div class="col-md-6 col-lg-4" role="listitem">
+                <article class="episode-card" aria-label="Episodi @episode.EpisodeCode">
+                    <p class="episode-code" aria-hidden="true">@episode.EpisodeCode</p>
+                    <h3 class="episode-name">@episode.Name</h3>
+                    <p class="episode-date">
+                        <time>@episode.AirDate</time>
+                        · <span>@episode.Characters.Count personatges</span>
+                    </p>
+                </article>
+            </div>
+        }
+    </div>
+
+    <div class="text-center mt-4">
+        <a asp-controller="RickAndMorty" asp-action="Episodes"
+           class="btn-outline-custom"
+           aria-label="Veure tots els episodis">
+            Veure tots els episodis →
+        </a>
+    </div>
+</section>

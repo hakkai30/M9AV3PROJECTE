@@ -1,0 +1,68 @@
+@model List<Character>
+@{
+    var episode = ViewBag.Episode as Episode;
+    ViewData["Title"] = episode?.Name ?? "Episodi";
+}
+
+<nav aria-label="Fil d'Ariadna" class="py-3">
+    <ol style="list-style:none;display:flex;gap:.5rem;color:var(--text-muted);font-size:.85rem;padding:0;flex-wrap:wrap;">
+        <li><a asp-controller="Home" asp-action="Index" style="color:var(--color-cyan);">Inici</a></li>
+        <li aria-hidden="true">/</li>
+        <li><a asp-controller="RickAndMorty" asp-action="Episodes" style="color:var(--color-cyan);">Episodis</a></li>
+        <li aria-hidden="true">/</li>
+        <li aria-current="page">@episode?.EpisodeCode</li>
+    </ol>
+</nav>
+
+@if (episode != null)
+{
+    <article aria-label="Detall de l'episodi @episode.EpisodeCode">
+        <div class="mb-2">
+            <span class="season-badge" aria-label="Temporada @episode.SeasonNumber, episodi @episode.EpisodeNumber">
+                @episode.EpisodeCode
+            </span>
+        </div>
+        <h1 class="mb-2">@episode.Name</h1>
+        <p style="color:var(--text-muted);">
+            Data d'emissió: <time>@episode.AirDate</time>
+            · @episode.Characters.Count personatges
+        </p>
+    </article>
+
+    <section class="mt-4" aria-labelledby="chars-heading">
+        <h2 id="chars-heading" class="mb-3">Personatges en aquest episodi</h2>
+        <div class="character-grid" role="list">
+            @foreach (var character in Model)
+            {
+                <article class="character-card" role="listitem" aria-label="@character.Name">
+                    <div class="character-card__img-wrapper">
+                        <img src="@character.Image"
+                             alt="@character.ImageAltText"
+                             class="character-card__img"
+                             width="300" height="300"
+                             loading="lazy" />
+                    </div>
+                    <div class="character-card__body">
+                        <h3 class="character-card__name">@character.Name</h3>
+                        <p class="character-card__meta">
+                            <span class="status-badge @character.StatusCssClass"
+                                  aria-label="Estat: @character.Status">
+                                @character.Status
+                            </span>
+                        </p>
+                    </div>
+                    <a asp-controller="RickAndMorty" asp-action="Character" asp-route-id="@character.Id"
+                       class="character-card__link"
+                       aria-label="Veure detall de @character.Name">
+                    </a>
+                </article>
+            }
+        </div>
+    </section>
+}
+
+<div class="mt-4 mb-4">
+    <a asp-action="Episodes" class="btn-outline-custom" aria-label="Tornar a la llista d'episodis">
+        ← Tornar als Episodis
+    </a>
+</div>
