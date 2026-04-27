@@ -46,7 +46,7 @@ Para la serialización y deserialización de datos JSON se ha utilizado de forma
 
 ### Compliment de requisits MP09 (AV3)
 
-Aquest projecte compleix el requisit de **“codificar mínim diferents rutes al controlador, models i vistes que mostri dades de consum d’un servei Web i consultes a BBDD”** del MP09. [file:2]
+Aquest projecte compleix el requisit de **“codificar mínim diferents rutes al controlador, models i vistes que mostri dades de consum d’un servei Web i consultes a BBDD”** del MP09.
 
 - **Controladors i rutes**
   - `HomeController`: accions `Index` i `Error`.
@@ -70,7 +70,7 @@ Aquest projecte compleix el requisit de **“codificar mínim diferents rutes al
   - `AppDbContext` amb DbSet de `FavoriteCharacter` i configuració SQLite.
   - Les accions `Favorites`, `AddFavorite` i `RemoveFavorite` treballen directament contra la base de dades per llegir, afegir i eliminar favorits.
 
-Aquests punts deixen explícit que el projecte utilitza **MVC**, múltiples rutes, models i vistes, consum d’un servei web i consultes a una BBDD SQLite, tal com demana l’enunciat. [file:2]
+Aquests punts deixen explícit que el projecte utilitza **MVC**, múltiples rutes, models i vistes, consum d’un servei web i consultes a una BBDD SQLite, tal com demana l’enunciat.
 
 ### Acceso a Producción
 
@@ -134,7 +134,7 @@ Las puntuaciones obtenidas permiten afirmar que el proyecto presenta un alto niv
 
 ### Evidencia de implementación accesible en API y BBDD
 
-Un aspecto relevante del proyecto es la coherencia accesible en ambos modelos de datos:
+Un aspecto relevante del proyecto es la coherencia accessible en ambos modelos de datos:
 
 - Vistas con datos de API (por ejemplo, Episodios): se observa etiquetado accesible en elementos dinámicos renderizados desde respuestas externas.
 - Vistas con datos de BBDD local (por ejemplo, Favoritos): se mantiene el mismo criterio de accesibilidad en contenido persistido localmente.
