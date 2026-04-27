@@ -1,0 +1,208 @@
+@model CharacterListViewModel
+@{
+    ViewData["Title"] = "Personatges";
+}
+
+<div class="py-4">
+    <p class="section-title" aria-hidden="true">Univers</p>
+    <h1>Personatges
+        <span style="color:var(--text-muted);font-size:1rem;font-family:var(--font-body);">
+            (@Model.TotalCount.ToString("N0") en total)
+        </span>
+    </h1>
+</div>
+
+<section class="filter-panel" aria-labelledby="filter-heading">
+    <h2 class="filter-title" id="filter-heading">Filtrar Personatges</h2>
+
+    <form method="get" asp-action="Characters" asp-controller="RickAndMorty"
+          role="search" aria-label="Formulari de filtre de personatges">
+        <div class="row g-3">
+            <div class="col-md-4">
+                <label for="name" class="form-label">Nom del personatge</label>
+                <input type="search"
+                       id="name"
+                       name="name"
+                       class="form-control"
+                       value="@Model.SearchName"
+                       placeholder="Rick, Morty, Beth..."
+                       aria-describedby="name-hint" />
+                <div id="name-hint" class="sr-only">Cerca per nom del personatge</div>
+            </div>
+
+            <div class="col-md-2">
+                <label for="status" class="form-label">Estat</label>
+                <select id="status" name="status" class="form-select" aria-label="Filtrar per estat">
+                    <option value="" selected="@(Model.FilterStatus == null)">Tots</option>
+                    <option value="alive" selected="@(Model.FilterStatus == "alive")">Viu</option>
+                    <option value="dead" selected="@(Model.FilterStatus == "dead")">Mort</option>
+                    <option value="unknown" selected="@(Model.FilterStatus == "unknown")">Desconegut</option>
+                </select>
+            </div>
+
+            <div class="col-md-2">
+                <label for="species" class="form-label">Espècie</label>
+                <input type="text"
+                       id="species"
+                       name="species"
+                       class="form-control"
+                       value="@Model.FilterSpecies"
+                       placeholder="Human, Alien..."
+                       aria-label="Filtrar per espècie" />
+            </div>
+
+            <div class="col-md-2">
+                <label for="gender" class="form-label">Gènere</label>
+                <select id="gender" name="gender" class="form-select" aria-label="Filtrar per gènere">
+                    <option value="" selected="@(Model.FilterGender == null)">Tots</option>
+                    <option value="female" selected="@(Model.FilterGender == "female")">Femení</option>
+                    <option value="male" selected="@(Model.FilterGender == "male")">Masculí</option>
+                    <option value="genderless" selected="@(Model.FilterGender == "genderless")">Sense gènere</option>
+                    <option value="unknown" selected="@(Model.FilterGender == "unknown")">Desconegut</option>
+                </select>
+            </div>
+
+            <div class="col-md-2 d-flex align-items-end gap-2">
+                <button type="submit" class="btn-primary-custom" aria-label="Aplicar filtres de cerca">
+                    Cercar
+                </button>
+                @if (Model.SearchName != null || Model.FilterStatus != null || Model.FilterSpecies != null || Model.FilterGender != null)
+                {
+                    <a asp-action="Characters" class="btn-outline-custom" aria-label="Esborrar tots els filtres">
+                        ✕
+                    </a>
+                }
+            </div>
+        </div>
+    </form>
+</section>
+
+@if (Model.Characters.Any())
+{
+    <section aria-label="Resultats: @Model.Characters.Count personatges">
+        <div class="character-grid" role="list">
+            @foreach (var character in Model.Characters)
+            {
+                <article class="character-card" role="listitem" aria-label="@character.Name, @character.Species, @character.Status">
+                    <div class="character-card__img-wrapper">
+                        <img src="@character.Image"
+                             alt="@character.ImageAltText"
+                             class="character-card__img"
+                             width="300" height="300"
+                             loading="lazy" />
+
+                        @if (Model.FavoriteIds.Contains(character.Id))
+                        {
+                            <span class="character-card__favorite-badge"
+                                  aria-label="@character.Name és als teus favorits"
+                                  role="img">
+                                ★
+                            </span>
+                        }
+                    </div>
+
+                    <div class="character-card__body">
+                        <h3 class="character-card__name">@character.Name</h3>
+                        <p class="character-card__meta mb-2">
+                            <span class="status-badge @character.StatusCssClass"
+                                  aria-label="Estat: @character.Status">
+                                @character.Status
+                            </span>
+                        </p>
+                        <p class="character-card__meta text-muted-custom" style="font-size:0.8rem;">
+                            @character.Species · @character.Gender
+                        </p>
+                    </div>
+
+                    <a asp-controller="RickAndMorty"
+                       asp-action="Character"
+                       asp-route-id="@character.Id"
+                       class="character-card__link"
+                       aria-label="Veure detall complet de @character.Name">
+                    </a>
+                </article>
+            }
+        </div>
+
+        @if (Model.TotalPages > 1)
+        {
+            <nav class="pagination-wrapper" aria-label="Paginació de personatges">
+                @if (Model.CurrentPage > 1)
+                {
+                    <a asp-action="Characters"
+                       asp-route-page="@(Model.CurrentPage - 1)"
+                       asp-route-name="@Model.SearchName"
+                       asp-route-status="@Model.FilterStatus"
+                       asp-route-species="@Model.FilterSpecies"
+                       asp-route-gender="@Model.FilterGender"
+                       class="page-btn"
+                       aria-label="Pàgina anterior, pàgina @(Model.CurrentPage - 1)">
+                        ← Anterior
+                    </a>
+                }
+                else
+                {
+                    <span class="page-btn" aria-disabled="true">← Anterior</span>
+                }
+
+                @{
+                    int start = Math.Max(1, Model.CurrentPage - 2);
+                    int end   = Math.Min(Model.TotalPages, start + 4);
+                }
+                @for (int p = start; p <= end; p++)
+                {
+                    if (p == Model.CurrentPage)
+                    {
+                        <span class="page-btn active" aria-label="Pàgina actual: @p" aria-current="page">@p</span>
+                    }
+                    else
+                    {
+                        <a asp-action="Characters"
+                           asp-route-page="@p"
+                           asp-route-name="@Model.SearchName"
+                           asp-route-status="@Model.FilterStatus"
+                           asp-route-species="@Model.FilterSpecies"
+                           asp-route-gender="@Model.FilterGender"
+                           class="page-btn"
+                           aria-label="Anar a la pàgina @p">
+                            @p
+                        </a>
+                    }
+                }
+
+                @if (Model.CurrentPage < Model.TotalPages)
+                {
+                    <a asp-action="Characters"
+                       asp-route-page="@(Model.CurrentPage + 1)"
+                       asp-route-name="@Model.SearchName"
+                       asp-route-status="@Model.FilterStatus"
+                       asp-route-species="@Model.FilterSpecies"
+                       asp-route-gender="@Model.FilterGender"
+                       class="page-btn"
+                       aria-label="Pàgina següent, pàgina @(Model.CurrentPage + 1)">
+                        Següent →
+                    </a>
+                }
+                else
+                {
+                    <span class="page-btn" aria-disabled="true">Següent →</span>
+                }
+            </nav>
+
+            <p class="text-center text-muted-custom mt-2" style="font-size:0.8rem;" aria-live="polite">
+                Pàgina @Model.CurrentPage de @Model.TotalPages
+            </p>
+        }
+    </section>
+}
+else
+{
+    <div class="empty-state" role="status" aria-live="polite">
+        <span class="empty-state__icon" aria-hidden="true">🔍</span>
+        <h2 class="empty-state__title">Cap personatge trobat</h2>
+        <p>Prova de canviar els filtres de cerca.</p>
+        <a asp-action="Characters" class="btn-primary-custom mt-3" aria-label="Veure tots els personatges sense filtre">
+            Veure tots els personatges
+        </a>
+    </div>
+}

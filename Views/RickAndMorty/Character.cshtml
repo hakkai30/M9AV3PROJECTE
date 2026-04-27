@@ -1,0 +1,130 @@
+@model CharacterDetailViewModel
+@{
+    var c = Model.Character!;
+    ViewData["Title"] = c.Name;
+}
+
+<nav aria-label="Fil d'Ariadna" class="py-3">
+    <ol style="list-style:none;display:flex;gap:.5rem;color:var(--text-muted);font-size:.85rem;padding:0;flex-wrap:wrap;">
+        <li><a asp-controller="Home" asp-action="Index" style="color:var(--color-cyan);">Inici</a></li>
+        <li aria-hidden="true" style="color:var(--text-muted);">/</li>
+        <li><a asp-controller="RickAndMorty" asp-action="Characters" style="color:var(--color-cyan);">Personatges</a></li>
+        <li aria-hidden="true" style="color:var(--text-muted);">/</li>
+        <li aria-current="page" style="color:var(--text-primary);">@c.Name</li>
+    </ol>
+</nav>
+
+<article aria-label="Detall de @c.Name">
+    <div class="character-detail">
+
+        <div>
+            <img src="@c.Image"
+                 alt="@c.ImageAltText"
+                 class="character-detail__img"
+                 width="300" height="300" />
+
+            <div class="mt-3">
+                @if (Model.IsFavorite)
+                {
+                    <form asp-action="RemoveFavorite" asp-controller="RickAndMorty" method="post">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="id" value="@c.Id" />
+                        <input type="hidden" name="returnUrl" value="@Context.Request.Path" />
+                        <button type="submit" class="btn-danger-custom w-100"
+                                aria-label="Eliminar @c.Name dels favorits">
+                            ★ Eliminar dels Favorits
+                        </button>
+                    </form>
+                }
+                else
+                {
+                    <form asp-action="AddFavorite" asp-controller="RickAndMorty" method="post">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="characterId" value="@c.Id" />
+                        <input type="hidden" name="returnUrl" value="@Context.Request.Path" />
+                        <button type="submit" class="btn-primary-custom w-100"
+                                aria-label="Afegir @c.Name als favorits">
+                            ☆ Afegir als Favorits
+                        </button>
+                    </form>
+                }
+            </div>
+        </div>
+
+        <div>
+            <h1 class="mb-2">@c.Name</h1>
+            <span class="status-badge @c.StatusCssClass mb-3 d-inline-block"
+                  aria-label="Estat: @c.Status">
+                @c.Status
+            </span>
+
+            <div class="detail-card" aria-labelledby="info-heading">
+                <h2 class="detail-card__title" id="info-heading">Informació del Personatge</h2>
+
+                <dl>
+                    <div class="detail-row">
+                        <dt class="detail-row__key">Espècie</dt>
+                        <dd class="detail-row__value">@c.Species</dd>
+                    </div>
+                    @if (!string.IsNullOrWhiteSpace(c.Type))
+                    {
+                        <div class="detail-row">
+                            <dt class="detail-row__key">Tipus</dt>
+                            <dd class="detail-row__value">@c.Type</dd>
+                        </div>
+                    }
+                    <div class="detail-row">
+                        <dt class="detail-row__key">Gènere</dt>
+                        <dd class="detail-row__value">@c.Gender</dd>
+                    </div>
+                    <div class="detail-row">
+                        <dt class="detail-row__key">Origen</dt>
+                        <dd class="detail-row__value">@(c.Origin?.Name ?? "Desconegut")</dd>
+                    </div>
+                    <div class="detail-row">
+                        <dt class="detail-row__key">Localització actual</dt>
+                        <dd class="detail-row__value">@(c.Location?.Name ?? "Desconeguda")</dd>
+                    </div>
+                    <div class="detail-row">
+                        <dt class="detail-row__key">Total d'episodis</dt>
+                        <dd class="detail-row__value">@c.Episode.Count</dd>
+                    </div>
+                    <div class="detail-row">
+                        <dt class="detail-row__key">Creat a l'API</dt>
+                        <dd class="detail-row__value">
+                            <time datetime="@c.Created.ToString("yyyy-MM-dd")">
+                                @c.Created.ToString("dd/MM/yyyy")
+                            </time>
+                        </dd>
+                    </div>
+                </dl>
+            </div>
+
+            @if (Model.Episodes.Any())
+            {
+                <section class="detail-card" aria-labelledby="episodes-heading">
+                    <h2 class="detail-card__title" id="episodes-heading">
+                        Episodis on apareix (primers @Model.Episodes.Count)
+                    </h2>
+                    <div class="row g-2" role="list">
+                        @foreach (var ep in Model.Episodes)
+                        {
+                            <div class="col-md-6" role="listitem">
+                                <div class="episode-card" style="padding:.75rem 1rem;">
+                                    <p class="episode-code" aria-hidden="true">@ep.EpisodeCode</p>
+                                    <p class="episode-name" style="font-size:.85rem;">@ep.Name</p>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </section>
+            }
+        </div>
+    </div>
+</article>
+
+<div class="mt-4 mb-4">
+    <a asp-action="Characters" class="btn-outline-custom" aria-label="Tornar a la llista de personatges">
+        ← Tornar als Personatges
+    </a>
+</div>
