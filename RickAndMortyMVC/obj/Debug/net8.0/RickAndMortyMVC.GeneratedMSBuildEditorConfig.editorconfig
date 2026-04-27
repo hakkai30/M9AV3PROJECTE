@@ -1,0 +1,73 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = RickAndMortyMVC
+build_property.RootNamespace = RickAndMortyMVC
+build_property.ProjectDir = /Users/robin/Desktop/DAW2/DISSENY D'INTERFICIES WEB/M9AV3PROJECTE/RickAndMortyMVC/
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = /Users/robin/Desktop/DAW2/DISSENY D'INTERFICIES WEB/M9AV3PROJECTE/RickAndMortyMVC
+build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 8.0
+build_property.EnableCodeStyleSeverity = 
+
+[/Users/robin/Desktop/DAW2/DISSENY D'INTERFICIES WEB/M9AV3PROJECTE/RickAndMortyMVC/Views/Home/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9FcnJvci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/robin/Desktop/DAW2/DISSENY D'INTERFICIES WEB/M9AV3PROJECTE/RickAndMortyMVC/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/robin/Desktop/DAW2/DISSENY D'INTERFICIES WEB/M9AV3PROJECTE/RickAndMortyMVC/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/robin/Desktop/DAW2/DISSENY D'INTERFICIES WEB/M9AV3PROJECTE/RickAndMortyMVC/Views/RickAndMorty/Character.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmlja0FuZE1vcnR5L0NoYXJhY3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/robin/Desktop/DAW2/DISSENY D'INTERFICIES WEB/M9AV3PROJECTE/RickAndMortyMVC/Views/RickAndMorty/Characters.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmlja0FuZE1vcnR5L0NoYXJhY3RlcnMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/robin/Desktop/DAW2/DISSENY D'INTERFICIES WEB/M9AV3PROJECTE/RickAndMortyMVC/Views/RickAndMorty/Episode.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmlja0FuZE1vcnR5L0VwaXNvZGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/robin/Desktop/DAW2/DISSENY D'INTERFICIES WEB/M9AV3PROJECTE/RickAndMortyMVC/Views/RickAndMorty/Episodes.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmlja0FuZE1vcnR5L0VwaXNvZGVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/robin/Desktop/DAW2/DISSENY D'INTERFICIES WEB/M9AV3PROJECTE/RickAndMortyMVC/Views/RickAndMorty/Favorites.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmlja0FuZE1vcnR5L0Zhdm9yaXRlcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/robin/Desktop/DAW2/DISSENY D'INTERFICIES WEB/M9AV3PROJECTE/RickAndMortyMVC/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/robin/Desktop/DAW2/DISSENY D'INTERFICIES WEB/M9AV3PROJECTE/RickAndMortyMVC/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/robin/Desktop/DAW2/DISSENY D'INTERFICIES WEB/M9AV3PROJECTE/RickAndMortyMVC/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/robin/Desktop/DAW2/DISSENY D'INTERFICIES WEB/M9AV3PROJECTE/RickAndMortyMVC/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/robin/Desktop/DAW2/DISSENY D'INTERFICIES WEB/M9AV3PROJECTE/RickAndMortyMVC/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-qfgjz2czhf

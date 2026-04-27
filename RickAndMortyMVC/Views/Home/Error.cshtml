@@ -1,0 +1,14 @@
+@{
+    ViewData["Title"] = "Error";
+}
+
+<div class="empty-state py-5" role="alert" aria-live="assertive">
+    <span class="empty-state__icon" aria-hidden="true">⚠️</span>
+    <h1 class="empty-state__title">S'ha produït un error</h1>
+    <p class="mt-2">Sembla que alguna cosa ha anat malament. Torna-ho a provar en uns moments.</p>
+    <a asp-controller="Home" asp-action="Index"
+       class="btn-primary-custom mt-4"
+       aria-label="Tornar a la pàgina d'inici">
+        Tornar a l'inici
+    </a>
+</div>

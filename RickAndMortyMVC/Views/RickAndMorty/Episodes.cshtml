@@ -1,0 +1,81 @@
+@model Dictionary<int, List<Episode>>
+@{
+    ViewData["Title"] = "Episodis";
+    int currentPage = ViewBag.CurrentPage ?? 1;
+    int totalPages  = ViewBag.TotalPages ?? 1;
+    int totalCount  = ViewBag.TotalCount ?? 0;
+}
+
+<div class="py-4">
+    <p class="section-title" aria-hidden="true">Sèrie</p>
+    <h1>Episodis
+        <span style="color:var(--text-muted);font-size:1rem;font-family:var(--font-body);">
+            (@totalCount en total)
+        </span>
+    </h1>
+</div>
+
+@foreach (var seasonGroup in Model)
+{
+    <section class="mb-5" aria-labelledby="season-@seasonGroup.Key-heading">
+        <div class="mb-3">
+            <span class="season-badge" aria-hidden="true">Temporada @seasonGroup.Key</span>
+            <h2 id="season-@seasonGroup.Key-heading" class="sr-only">
+                Temporada @seasonGroup.Key — @seasonGroup.Value.Count episodis
+            </h2>
+        </div>
+
+        <div class="row g-3" role="list">
+            @foreach (var episode in seasonGroup.Value)
+            {
+                <div class="col-md-6 col-lg-4" role="listitem">
+                    <article class="episode-card" aria-label="@episode.EpisodeCode: @episode.Name">
+                        <p class="episode-code" aria-hidden="true">@episode.EpisodeCode</p>
+                        <h3 class="episode-name" style="font-size:1rem;">@episode.Name</h3>
+                        <p class="episode-date">
+                            <time>@episode.AirDate</time>
+                        </p>
+                        <p style="color:var(--text-muted);font-size:.8rem;margin-top:.5rem;">
+                            @episode.Characters.Count personatges
+                        </p>
+                        <a asp-action="Episode" asp-route-id="@episode.Id"
+                           style="color:var(--color-cyan);font-size:.8rem;text-decoration:none;"
+                           aria-label="Veure detall de l'episodi @episode.EpisodeCode: @episode.Name">
+                            Veure detall →
+                        </a>
+                    </article>
+                </div>
+            }
+        </div>
+    </section>
+}
+
+@if (totalPages > 1)
+{
+    <nav class="pagination-wrapper" aria-label="Paginació d'episodis">
+        @if (currentPage > 1)
+        {
+            <a asp-action="Episodes" asp-route-page="@(currentPage - 1)"
+               class="page-btn" aria-label="Pàgina anterior">← Anterior</a>
+        }
+
+        @for (int p = Math.Max(1, currentPage - 2); p <= Math.Min(totalPages, currentPage + 2); p++)
+        {
+            if (p == currentPage)
+            {
+                <span class="page-btn active" aria-current="page" aria-label="Pàgina @p">@p</span>
+            }
+            else
+            {
+                <a asp-action="Episodes" asp-route-page="@p"
+                   class="page-btn" aria-label="Anar a la pàgina @p">@p</a>
+            }
+        }
+
+        @if (currentPage < totalPages)
+        {
+            <a asp-action="Episodes" asp-route-page="@(currentPage + 1)"
+               class="page-btn" aria-label="Pàgina següent">Següent →</a>
+        }
+    </nav>
+}
