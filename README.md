@@ -111,8 +111,6 @@ Capturas adjuntas de validación WAVE en producción:
 - Newtonsoft.Json
 - SQLite
 
-BLOQUE 2: Apartado para el dossier de proyecto
-----------------------------------------------
 
 ### Análisis técnico de accesibilidad (WAVE) en entorno de producción
 
