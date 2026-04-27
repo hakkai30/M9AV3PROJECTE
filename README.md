@@ -1,5 +1,5 @@
-Mòdul MP09 - AV3
-================
+Módulo MP09 - AV3
+=================
 
 Explorador web del universo de Rick and Morty
 ---------------------------------------------
@@ -39,44 +39,42 @@ Este proyecto académico tiene como objetivo integrar el consumo de una API REST
 
 La aplicación separa claramente la lógica de negocio según la fuente de datos:
 
-- Personatges i episodis: es carreguen des de l’API oficial de Rick and Morty en temps real mitjançant peticions HTTP des de la capa de serveis.
-- Favorits: es gestionen contra la base de dades local SQLite per mantenir un estat propi de l’aplicació.
+- Personajes y episodios: se cargan desde la API oficial de Rick and Morty en tiempo real mediante peticiones HTTP desde la capa de servicios.
+- Favoritos: se gestionan contra la base de datos local SQLite para mantener un estado propio de la aplicación.
 
 Para la serialización y deserialización de datos JSON se ha utilizado de forma explícita la librería **Newtonsoft.Json**, fundamental para mapear de forma fiable las respuestas de la API a los modelos del dominio.
 
-### Compliment de requisits MP09 (AV3)
+### Cumplimiento de requisitos MP09 (AV3)
 
-Aquest projecte compleix el requisit de **“codificar mínim diferents rutes al controlador, models i vistes que mostri dades de consum d’un servei Web i consultes a BBDD”** del MP09.
+Este proyecto cumple el requisito de **“codificar múltiples rutas al controlador, modelos y vistas que muestren datos de consumo de un servicio Web y consultas a BBDD”** del módulo MP09.
 
-- **Controladors i rutes**
-  - `HomeController`: accions `Index` i `Error`.
-  - `RickAndMortyController`: accions `Characters`, `Character`, `Episodes`, `Episode`, `Favorites`, `AddFavorite` i `RemoveFavorite`.
-  - En total, diverses rutes funcionals que responen a URLs diferents i mostren informació distinta.
+- **Controladores y rutas**
+  - `HomeController`: acciones `Index` y `Error`.
+  - `RickAndMortyController`: acciones `Characters`, `Character`, `Episodes`, `Episode`, `Favorites`, `AddFavorite` y `RemoveFavorite`.
+  - En total, varias rutas funcionales que responden a URLs distintas y muestran información diferente.
 
-- **Models i ViewModels**
-  - Models de domini: `Character`, `Episode`, `FavoriteCharacter`, `ApiResponse<T>` i `Location`.
+- **Modelos y ViewModels**
+  - Modelos de dominio: `Character`, `Episode`, `FavoriteCharacter`, `ApiResponse<T>` y `Location`.
   - ViewModels: `HomeViewModel`, `CharacterListViewModel`, `CharacterDetailViewModel`.
-  - S’utilitzen per separar clarament la informació de l’API, la BBDD i la presentació a les vistes.
+  - Se utilizan para separar claramente la información procedente de la API, de la base de datos y de la presentación en las vistas.
 
-- **Vistes Razor**
-  - Vistes fortament tipades per a: Home, llistat de personatges, detall de personatge, llistat d’episodis, detall d’episodi i favorits.
-  - Cada acció de controlador té associada una vista que mostra les dades corresponents.
+- **Vistas Razor**
+  - Vistas fuertemente tipadas para: Home, listado de personajes, detalle de personaje, listado de episodios, detalle de episodio y favoritos.
+  - Cada acción de controlador tiene asociada una vista que muestra los datos correspondientes.
 
-- **Consum de servei Web**
-  - Servei `RickAndMortyService` que crida l’API oficial (`https://rickandmortyapi.com/api`) amb HttpClient.
-  - Es consumeixen recursos de personatges i episodis, amb paginació i filtres opcionals.
+- **Consumo de servicio Web**
+  - Servicio `RickAndMortyService` que llama a la API oficial (`https://rickandmortyapi.com/api`) mediante HttpClient.
+  - Se consumen recursos de personajes y episodios, con paginación y filtros opcionales.
 
-- **Consultes a BBDD**
-  - `AppDbContext` amb DbSet de `FavoriteCharacter` i configuració SQLite.
-  - Les accions `Favorites`, `AddFavorite` i `RemoveFavorite` treballen directament contra la base de dades per llegir, afegir i eliminar favorits.
+- **Consultas a base de datos**
+  - `AppDbContext` con DbSet de `FavoriteCharacter` y configuración SQLite.
+  - Las acciones `Favorites`, `AddFavorite` y `RemoveFavorite` trabajan directamente contra la base de datos para leer, añadir y eliminar favoritos.
 
-Aquests punts deixen explícit que el projecte utilitza **MVC**, múltiples rutes, models i vistes, consum d’un servei web i consultes a una BBDD SQLite, tal com demana l’enunciat.
+Estos puntos dejan explícito que el proyecto utiliza **MVC**, múltiples rutas, modelos y vistas, consumo de un servicio web y consultas a una base de datos SQLite, tal y como exige el enunciado.
 
-### Acceso a Producción
+### Acceso a producción
 
 - URL de producción: http://hakkai01-001-site1.ntempurl.com/
-- Usuari: (veure credencials indicades pel professor o per l’alumne en l’entrega)
-- Contrasenya: (veure credencials indicades pel professor o per l’alumne en l’entrega)
 
 ### Accesibilidad y UX
 
@@ -98,9 +96,9 @@ Capturas adjuntas de validación WAVE en producción:
 
 ### Propuestas de mejora
 
-- Implementar rols d’usuari per controlar permisos de forma més granular (administrador, usuari estàndard, etc.).
-- Incorporar filtres avançats que combinin dades de l’API externa i de la base de dades local per enriquir la cerca i l’exploració.
-- Afegir més proves d’accessibilitat automàtiques i manuals per mantenir el nivell de qualitat a llarg termini.
+- Implementar roles de usuario para controlar los permisos de forma más granular (administrador, usuario estándar, etc.).
+- Incorporar filtros avanzados que combinen datos de la API externa y de la base de datos local para enriquecer la búsqueda y la exploración.
+- Añadir más pruebas de accesibilidad automáticas y manuales para mantener el nivel de calidad a largo plazo.
 
 ### Tecnologías utilizadas
 
@@ -113,7 +111,7 @@ Capturas adjuntas de validación WAVE en producción:
 - Newtonsoft.Json
 - SQLite
 
-BLOQUE 2: Apartado para el Dossier de Projecte
+BLOQUE 2: Apartado para el dossier de proyecto
 ----------------------------------------------
 
 ### Análisis técnico de accesibilidad (WAVE) en entorno de producción
@@ -134,10 +132,10 @@ Las puntuaciones obtenidas permiten afirmar que el proyecto presenta un alto niv
 
 ### Evidencia de implementación accesible en API y BBDD
 
-Un aspecto relevante del proyecto es la coherencia accessible en ambos modelos de datos:
+Un aspecto relevante del proyecto es la coherencia accesible en ambos modelos de datos:
 
 - Vistas con datos de API (por ejemplo, Episodios): se observa etiquetado accesible en elementos dinámicos renderizados desde respuestas externas.
-- Vistas con datos de BBDD local (por ejemplo, Favoritos): se mantiene el mismo criterio de accesibilidad en contenido persistido localmente.
+- Vistas con datos de base de datos local (por ejemplo, Favoritos): se mantiene el mismo criterio de accesibilidad en contenido persistido localmente.
 
 En ambos casos, se emplean etiquetas `aria-label` generadas dinámicamente con Razor, lo que permite que la semántica accesible se adapte al contenido real mostrado en tiempo de ejecución.
 
