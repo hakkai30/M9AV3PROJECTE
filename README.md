@@ -92,9 +92,9 @@ Estos resultados evidencian un nivel alto de cumplimiento WCAG, sin incidencias 
 
 Capturas adjuntas de validación WAVE en producción:
 
-- WAVE Home: `docs/wave/PERSONATGES.jpeg`
-- WAVE Episodios: `docs/wave/EPISODIS.jpeg`
-- WAVE Favoritos: `docs/wave/FAVORITS.jpeg`
+![WAVE Home](docs/wave/PERSONATGES.jpeg)
+![WAVE Episodios](docs/wave/EPISODIS.jpeg)
+![WAVE Favoritos](docs/wave/FAVORITS.jpeg)
 
 ### Propuestas de mejora
 
